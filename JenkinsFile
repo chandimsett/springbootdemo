@@ -13,7 +13,7 @@ node {
 	}
 	}
 
-	stage('Remove old images') {
+	stage('Deploy to Tomcat') {
 		sh("cp target/hello-world-0.0.1-SNAPSHOT.war /opt/tomcat/webapps")
    }
 }
