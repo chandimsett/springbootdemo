@@ -1,0 +1,19 @@
+node {
+	def application = "springbootapp"
+	stage('Clone repository') {
+		checkout scm
+	}
+
+	stage('Build image') {
+		sh("mvn clean install")
+	}
+
+	stage('Run Tests') {
+		sh("mvn test")
+	}
+	}
+
+	stage('Remove old images') {
+		sh("cp target/hello-world-0.0.1-SNAPSHOT.war /opt/tomcat/webapps")
+   }
+}
