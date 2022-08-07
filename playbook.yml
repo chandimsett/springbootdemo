@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Running mvn clean
+      shell: "mvn clean install"
+
+    - name: Copy War File to Tomcat
+      ansible.builtin.copy:
+        src: target/hello-world-0.0.1-SNAPSHOT.war
+        dest: /opt/tomcat/webapps
+     
+    - name: Stop Tomcat
+      shell: "sh /opt/tomcat/bin/shutdown.sh"
+
+    - name: Start Tomcat
+      shell: "sh /opt/tomcat/bin/startup.sh"
