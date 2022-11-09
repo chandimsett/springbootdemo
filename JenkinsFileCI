@@ -7,9 +7,9 @@ node {
 	stage('Build image') {
 		app = docker.build("${dockerhubaccountid}/${application}:${BUILD_NUMBER}",".")
 	}
-  stage('Run Maven Tests in the Container') {
-		sh(" docker run --rm --entrypoint mvn  ${dockerhubaccountid}/${application}:${BUILD_NUMBER} test -c")
-   }
+#  stage('Run Maven Tests in the Container') {
+#		sh(" docker run --rm --entrypoint mvn  ${dockerhubaccountid}/${application}:${BUILD_NUMBER} test -c")
+#   }
 
 	stage('Push image') {
 		withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
